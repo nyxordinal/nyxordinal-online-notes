@@ -1,0 +1,62 @@
+{
+  "name": "nyxordinal-online-notes",
+  "version": "1.0.0",
+  "description": "Online notes editor for your fast and practive note experience",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export",
+    "prod:start": "yarn build && yarn start",
+    "prod:export": "yarn build && yarn export",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "yarn lint --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nyxordinal/nyxordinal-online-notes.git"
+  },
+  "author": "Nyxordinal",
+  "license": "MIT",
+  "homepage": "https://notes.nyxordinal.tech",
+  "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.57",
+    "@types/draft-js": "^0.10.44",
+    "axios": "^0.21.1",
+    "draft-js": "^0.11.7",
+    "draft-js-export-html": "^1.4.1",
+    "draft-js-import-html": "^1.4.1",
+    "es6-shim": "^0.35.6",
+    "next": "10.0.7",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.31",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/parser": "^4.15.2",
+    "eslint": "^7.20.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "husky": "^5.1.1",
+    "lint-staged": "^10.5.4",
+    "prettier": "2.2.1",
+    "typescript": "^4.2.2"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write",
+      "eslint --ext .js,.jsx,.ts,.tsx --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}
