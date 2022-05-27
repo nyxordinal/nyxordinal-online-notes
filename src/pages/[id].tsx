@@ -10,7 +10,7 @@ import {
   Snackbar,
   Toolbar,
   Typography,
-  useScrollTrigger,
+  useScrollTrigger
 } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import CloudDoneIcon from '@material-ui/icons/CloudDone';
@@ -104,6 +104,35 @@ export default function NyxordinalEditor() {
     }
   }, [id]);
 
+  useEffect(() => {
+    const confirmationMessage = 'Changes you made may not be saved.';
+    const beforeUnloadHandler = (e: BeforeUnloadEvent) => {
+      (e || window.event).returnValue = confirmationMessage;
+      return confirmationMessage; // Gecko + Webkit, Safari, Chrome etc.
+    };
+    const beforeRouteHandler = (url: string) => {
+      if (router.pathname !== url && !confirm(confirmationMessage)) {
+        // to inform NProgress or something ...
+        router.events.emit('routeChangeError');
+        // tslint:disable-next-line: no-string-throw
+        throw `Route change to "${url}" was aborted (this error can be safely ignored). See https://github.com/zeit/next.js/issues/2476.`;
+      }
+    };
+
+    if (editMode) {
+      window.addEventListener('beforeunload', beforeUnloadHandler)
+      router.events.on('routeChangeStart', beforeRouteHandler)
+    } else {
+      window.removeEventListener('beforeunload', beforeUnloadHandler)
+      router.events.off('routeChangeStart', beforeRouteHandler)
+    }
+
+    return () => {
+      window.removeEventListener('beforeunload', beforeUnloadHandler)
+      router.events.off('routeChangeStart', beforeRouteHandler)
+    }
+  }, [editMode])
+
   const handleKeyCommand = (command, editorState) => {
     const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {
@@ -179,7 +208,7 @@ export default function NyxordinalEditor() {
           </AppBar>
         </ElevationScroll>
         <Toolbar />
-        <Snackbar open={openErrorAlert} autoHideDuration={5000} onClose={handleClose}>
+        <Snackbar open={openErrorAlert} anchorOrigin={{ vertical: 'top', horizontal: 'center' }} autoHideDuration={5000} onClose={handleClose}>
           <Alert onClose={handleClose} severity="error">
             {errorAlertMessage}
           </Alert>
