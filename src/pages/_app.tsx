@@ -1,11 +1,11 @@
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 import '@style/editors.css';
 import '@style/globals.css';
-import type { AppProps } from 'next/app';
+import { AppProps } from 'next/app';
 
 // Customize material-ui theme
-const theme = createMuiTheme({
+const theme = createTheme({
 	palette: {
 		primary: {
 			main: '#2196f3',
