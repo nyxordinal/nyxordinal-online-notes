@@ -4,7 +4,7 @@ const Footer = () => {
 	return (
 		<footer className={styles.footer}>
 			<a
-				href="https://nyxordinal.tech"
+				href="https://nyxordinal.dev"
 				target="_blank"
 				rel="noopener noreferrer"
 			>

@@ -18,7 +18,7 @@
   },
   "author": "Nyxordinal",
   "license": "MIT",
-  "homepage": "https://notes.nyxordinal.tech",
+  "homepage": "https://notes.nyxordinal.dev",
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",

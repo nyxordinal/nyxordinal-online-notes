@@ -7,7 +7,7 @@ export default function Home() {
 			<main className={styles.main}>
 				<h1 className={styles.title}>
           Welcome to <br />
-					<a href="https://nyxordinal.tech">
+					<a href="https://nyxordinal.dev">
             Nyxordinal <br /> Online Editor!
 					</a>
 				</h1>
